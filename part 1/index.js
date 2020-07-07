@@ -2,21 +2,20 @@ const current = {
     LANGUAGE: Symbol("language"),
     TUTORIAL: Symbol("tutorial")
 }
-const TUTORIALS_SERVER = "./";
+const TUTORIALS_SERVER = "https://luis72353.github.io/blog/part%201/";
 
 let courseName = "tutorials";
 
 let course = null;
 
+let defaultLanguage = navigator.language.split("-")[0].toLowerCase() || "en";
+
 async function main() {
 
-    course = new Course("tutorial-1x1", $("#tutorial"), "en");
+    course = new Course("tutorial-1x1", $("#tutorial"), defaultLanguage);
 
     //languages
-    const languageSelector = createLanguageSelector(
-        /* navigator.languages[1] || */
-        "en",
-    );
+    const languageSelector = createLanguageSelector(defaultLanguage);
 
     languageSelector.on("change", (newLang) => {
         course.changeLanguage(newLang)
