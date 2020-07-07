@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #272727;
+        }
+    </style>
+</head>
+
+<body>
+    <progress id="progress" min="0" max="100" value="0"></progress>
+    <progress id="progress2" min="0" max="100" value="0"></progress>
+    <script>
+        async function main() {
+            const image = await loadImage("img/arrow-down.png");
+            const canvas = document.createElement("canvas");
+            canvas.width = image.width;
+            canvas.height = image.height;
+
+            canvas.getContext("2d").drawImage(image, 0, 0);
+            document.body.appendChild(canvas);
+
+            const cifrada = document.createElement("canvas");
+            cifrada.width = image.width * image.height;
+            cifrada.height = 1;
+            cfctx = cifrada.getContext("2d");
+
+            for (let x = image.width; x > 1; --x) {
+                for (let y = image.height; y > 1; --y) {
+                    const buffer = document.createElement("canvas");
+                    buffer.width = 1;
+                    buffer.height = 1;
+                    buffer.getContext("2d").drawImage(image, x, y, 1, 1, 0, 0, 1, 1);
+
+                    cfctx.drawImage(buffer, x * y, 0);
+                }
+            }
+            document.body.appendChild(cifrada)
+
+
+            const decifrada = document.createElement("canvas");
+            decifrada.width = image.width;
+            decifrada.height = image.height;
+
+            desctx = decifrada.getContext("2d");
+
+            for (let x = 1; x <= image.width; ++x) {
+                for (let y = 1; y <= image.height; ++y) {
+                    const buffer = document.createElement("canvas");
+                    buffer.width = 1;
+                    buffer.height = 1;
+
+                    buffer.getContext("2d").drawImage(cifrada, x * y, 0, 1, 1, 0, 0, 1, 1);
+
+
+                    desctx.drawImage(buffer, y, x)
+                }
+            }
+            document.body.appendChild(decifrada)
+
+
+
+        }
+        main()
+        async function cifrar(image) {
+            const canvas = document.createElement("canvas");
+            canvas.width = image.width * image.height;
+            canvas.height = 1;
+            const ctx = canvas.getContext("2d");
+            const total = image.width * image.height;
+            let progress = 0;
+
+            for (let x = 1; x <= image.width; ++x) {
+                for (let y = 1; y <= image.height; ++y) {
+                    const buffer = document.createElement("canvas");
+                    buffer.width = 1;
+                    buffer.height = 1;
+                    buffer.getContext("2d").drawImage(image, x, y, 1, 1, 0, 0, 1, 1);
+
+                    ctx.drawImage(buffer, x * y, 0);
+
+
+                    progress++;
+                    document.getElementById("progress").value = (100 / total) * progress;
+                }
+                await sleep(1)
+
+            }
+            return canvas;
+        }
+        function sleep(milis) {
+            return new Promise(resolve => setTimeout(resolve, milis))
+        }
+        async function decifrar(image, size) {
+            const canvas = document.createElement("canvas");
+            canvas.width = size.width;
+            canvas.height = size.height;
+            const ctx = canvas.getContext("2d");
+            const total = image.width;
+            let progress = 0;
+
+            for (let x = 1; x <= image.width; ++x) {
+                for (let y = 1; y <= image.height; ++y) {
+                    const buffer = document.createElement("canvas");
+                    buffer.width = 1;
+                    buffer.height = 1;
+                    buffer.getContext("2d").drawImage(image, x, 0, 1, 1, 0, 0, 1, 1);
+                    ctx.drawImage(buffer, x, x * y);
+
+                    document.getElementById("progress2").value = (100 / total) * progress;
+                    await sleep(1)
+                }
+                progress++;
+
+            }
+            return canvas;
+        }
+        function loadImage(url) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.addEventListener('load', () => resolve(img));
+                img.addEventListener('error', () => {
+                    reject(new Error(`Failed to load ${url}`));
+                });
+                img.src = url;
+            });
+        }
+    </script>
+</body>
+
+</html>

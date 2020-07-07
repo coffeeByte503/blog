@@ -1,0 +1,241 @@
+<div id="tutorial">
+    <section>
+        <h3>Getting started with Canvas</h3>
+        <article>
+            <p>
+                The html canvas is used to draw graphics that include
+                everything from simple lines to complex graphics
+                objects.
+            </p>
+            <img class="javascript-img" src="img/cartesano-dimension.png">
+            <img class="javascript-img" src="img/canvas-dimension-1.png">
+            <p>
+                The html canvas is two-dimensional grid, the upper-left corner of the canvas has coordinates(0,0).
+                <br>
+                X coordinates increases to the right.
+                <br>
+                Y coordinate increases toward the bottom of the canvas.
+            </p>
+            <p>
+                To start using canvas we need to add the
+                <code> &lt;canvas&gt;&lt;/canvas&gt; </code>
+                tag to our html
+            </p>
+            <div class="warn">
+                It can be created and added to the DOM from javascript, but we will see later.
+            </div>
+            <p>
+                Our HTML should look like this:
+            </p>
+
+            <div class="code">
+                &lt;canvas id="canvas"&gt;&lt;/canvas&gt;
+            </div class="code">
+
+            <p>
+                Notice that I have added the <b><i>id</i> </b> attribute that
+                will be used to select the <b> canvas </b> element
+                with js and store it in a constant.
+            </p>
+            <hr>
+            <p>
+                Our js will look like this:
+            </p>
+
+            <div class="code">
+                var canvas = document.getElementById.("canvas");
+            </div>
+
+            <p>
+                Now we can manipulate the styles and dimensions of the canvas,
+                but we can't draw anything yet.
+            </p>
+            <p>
+                For this we must obtain the context of the canvas to be able to draw on it,
+                the context will provide us of methods and properties
+                to do what our imagination allows us.
+            </p>
+
+            <div class="help">
+                <p>
+                    If you have trouble understanding imagine the following: the canvas is a piece of paper and the
+                    context is a pencil, that is, we use the pencil to draw on the paper (it is more than obvious but
+                    sometimes people do not understand) The variable canvas only goes make used to resize the paper,
+                    rather adapt it to the screen or adjust it to our way.
+                </p>
+            </div>
+
+            <p> El método getContext("2d") nos devolverá un objeto el cual guardaremos en una,
+                constante para poder manipular el canvas.</p>
+            <div class="code">
+
+                var context = canvas.getContext("2d");
+            </div>
+
+        </article>
+    </section>
+
+    <section>
+        <h3>El objeto context</h3>
+
+        <article>
+            <p>
+                El objeto context nos provee varios métodos para dibujar.
+            </p>
+
+
+            <ul class="list-blue">
+                <li>fillRect</li>
+                <li>rect</li>
+                <li>arc</li>
+                <li>cuadratic</li>
+                <hr>
+                <li>stroke</li>
+                <li>fill</li>
+                <hr>
+
+                <li>moveTo</li>
+                <li>lineTo</li>
+                <li>quadricCurveTo</li>
+                <li>bezierCurveTo</li>
+                <li>arcTo</li>
+
+                <hr>
+                <li>drawImage</li>
+                <hr>
+                <li>fillText</li>
+            </ul>
+
+            <div class="sub-title">Algunas propiedades:</div>
+            <ul class="list-blue">
+                <li>textAlign</li>
+                <li>globalAlpha</li>
+                <li>fillStyle</li>
+                <li>strokeStyle</li>
+                <li>lineWidth</li>
+            </ul>
+            <br>
+            <div class="warn">
+                <p>Estas son algunas de las propiedades y metodos, hay muchas mas.
+                    A lo largo del curso las iremos usando
+                </p>
+            </div>
+        </article>
+    </section>
+
+    <section>
+        <h3>First shapes</h3>
+        <article>
+            <h5>Usando el método fillRect:</h5>
+            <p>El método fillRect toma los siguientes parámetros (x, y, w, h)</p>
+            <div class="explain">
+                x & y son las coordenadas de nuestro canvas , w & h es el ancho
+                y largo de la figura que vamos acrear
+            </div>
+            <br>
+            <div class="code">
+
+                <iframe height="500" style="width: 100%;" scrolling="no" title="1x1-1"
+                    src="https://codepen.io/luis72353/embed/RwrMYdp?height=265&theme-id=dark&default-tab=js,result"
+                    frameborder="no" allowtransparency="true" allowfullscreen="true">
+                    See the Pen <a href='https://codepen.io/luis72353/pen/RwrMYdp'>1x1-1</a> by luis72353
+                    (<a href='https://codepen.io/luis72353'>@luis72353</a>) on <a href='https://codepen.io'>CodePen</a>.
+                </iframe>
+            </div>
+        </article>
+
+        <hr>
+
+        <article>
+            <h5>Usando el método rect:</h5>
+            <p>Al igual que fillRect, rect toma los siguientes parámetros (x, y, w, h)</p>
+            <br>
+            <div class="code">
+                <iframe height="500" style="width: 100%;" scrolling="no" title="1x1-2"
+                    src="https://codepen.io/luis72353/embed/XWXExYK?height=265&theme-id=dark&default-tab=js,result"
+                    frameborder="no" allowtransparency="true" allowfullscreen="true">
+                    See the Pen <a href='https://codepen.io/luis72353/pen/XWXExYK'>1x1-2</a> by luis72353
+                    (<a href='https://codepen.io/luis72353'>@luis72353</a>) on <a href='https://codepen.io'>CodePen</a>.
+                </iframe>
+            </div>
+
+            <p>A diferencia de .fillRect(), .rect() solo dibuja los bordes de la figura sin rellenarlo.
+                Nota tambien que he usado:
+                <br>
+                <strong>
+                    .beginPath()
+                    <br>
+                    .closePath()
+                    <br>
+                    .stroke()
+                </strong>
+            </p>
+
+            <p>
+                1- El método beginPath()
+                comienza una nueva ruta vaciando la lista de subrutas.
+                Llame a este método cuando desee crear una nueva ruta.
+            </p>
+            <p>
+                2- Usamos rect() para crear un camino (un cuadro en este caso)
+            </p>
+            <p>
+                3- Usamos closePaht()<br>
+                Este método no dibuja nada directamente en el lienzo.
+                El método crea una ruta desde el punto actual hasta el punto de partida, es decir
+                .beginPath()
+            </p>
+
+            <p>
+                4- Finalmente usamos el método stroke() para dibujar realmente (renderizar) la figura en el lienzo.
+            </p>
+
+        </article>
+    </section>
+
+    <section>
+
+        <article>
+            <h3>Cambiando los Colores</h3>
+
+            <p>El objeto context también nos provee de propiedades
+                para manipular colores, fuentes, opacidad etc.
+            </p>
+
+            <div class="sub-title">Cambiendo el color del trazo con strokeStyle:</div>
+            <div class="code">
+                context.strokeStyle = "#000";
+            </div>
+
+            <div class="sub-title">Cambiando el relleno con fillStyle:</div>
+            <div class="code">
+                context.fillStyle = "red";
+            </div>
+
+            <br>
+            <div class="warn">
+                <p>podemos asignar un color en exadecimal, rgb, rgba, nombre de color, etc.</p>
+            </div>
+            <br>
+            <iframe height="565" style="width: 100%;" scrolling="no" title="gOPeQpE"
+                src="https://codepen.io/luis72353/embed/gOPeQpE?height=265&theme-id=dark&default-tab=js,result"
+                frameborder="no" allowtransparency="true" allowfullscreen="true">
+                See the Pen <a href='https://codepen.io/luis72353/pen/gOPeQpE'>gOPeQpE</a> by luis72353
+                (<a href='https://codepen.io/luis72353'>@luis72353</a>) on <a href='https://codepen.io'>CodePen</a>.
+            </iframe>
+        </article>
+    </section>
+    <section>
+        <article>
+            <p>It was all for this lesson.</p>
+            <div class="sub-title">
+                <p>See next lesson:</p>
+            </div>
+            <div class="button">
+                <b>Drawing Path sahpes</b>
+                <br>
+                --will be aviable tomorrow--
+            </div>
+        </article>
+    </section>
+</div>

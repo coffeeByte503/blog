@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tutorial 0 part 1</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+    <script src="EventEmitter.js"></script>
+    <script src="dom.js"></script>
+    <script src="Select.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="inner_header">
+            <div class="menu" id="open-sideMenu">
+                <img class="icon" src="img/menu.png" alt="menu">
+
+            </div>
+
+            <div id="selectLanguage"></div>
+        </div>
+    </header>
+
+    <div class="overlay" id="sideMenu-overlay">
+        <div class="sideMenu" id="sideMenu">
+            <div class="author">
+                <img class="avatar" src="https://api.sololearn.com/Uploads/Avatars/9374228.jpg">
+                <div class="name">Luis Calderon</div>
+            </div>
+            <img src="img/blur.svg">
+            <div class="menu-content">
+                <h1>Canvas Course</h1>
+                <p class="chapter">Chapter 1</p>
+                <nav>
+                    <ol class="tutorial-list">
+                        <li data-id="tutorial-1"> About course </li>
+                        <li data-id="tutorial-1x1"> Getting started with HTML5 Canvas </li>
+
+                        <!-- <li>Drawing Path Shapes </li>
+
+                        <li> Adding the Html5 Canvas Element from js</li>
+
+                        <li> Canvas size and resolution </li>
+
+                        <li>Drawing images </li>
+
+                        <li>First animation </li>-->
+                    </ol>
+                </nav>
+                <!-- <p class="chapter">Chapter 2</p>
+                <nav>
+                    <ol class="tutorial-list">
+                        <li>Transformations</li>
+                        <li data-id="tutorial-2x1">Moving elements on canvas</li>
+                        <li>Basic animations</li>
+
+                        <li> Detecting mouse position on the canvas </li>
+                    </ol>
+                </nav>-->
+            </div>
+        </div>
+    </div>
+
+
+
+    <main id="tutorial"></main>
+
+    <footer>
+        <footer>
+            <article class="contact">
+                <p>sigueme en / follow me:</p>
+                <ul class="grid">
+                    <li>
+                        <a href="https://www.sololearn.com/Profile/9374228">
+                            <img class="contact-img" src="img/sololearn.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/luis72353">
+                            <img class="contact-img" src="img/github2.png">
+                        </a>
+                    </li>
+                </ul>
+
+                <p>contactame / contact me:</p>
+                <ul class="grid">
+                    <li>
+                        <a href="https://www.sololearn.com/Profile/9374228">
+
+                            <img class="contact-img" src="img/sololearn.png">
+                        </a>
+                    </li>
+                </ul>
+            </article>
+            <article class="copyRight">
+                <p>&copy; Luis Calderon 2020.</p>
+            </article>
+
+        </footer>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
