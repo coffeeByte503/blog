@@ -65,8 +65,8 @@
                 </p>
             </div>
 
-            <p> El método getContext("2d") nos devolverá un objeto el cual guardaremos en una,
-                constante para poder manipular el canvas.</p>
+            <p> The getContext ("2d") method will return an object which we will store in a
+                variable to be able to manipulate the canvas.</p>
             <div class="code">
 
                 var context = canvas.getContext("2d");
@@ -76,11 +76,11 @@
     </section>
 
     <section>
-        <h3>El objeto context</h3>
+        <h3>The context object</h3>
 
         <article>
             <p>
-                El objeto context nos provee varios métodos para dibujar.
+                The context object provides several methods for drawing.
             </p>
 
 
@@ -106,7 +106,7 @@
                 <li>fillText</li>
             </ul>
 
-            <div class="sub-title">Algunas propiedades:</div>
+            <div class="sub-title">Some properties:</div>
             <ul class="list-blue">
                 <li>textAlign</li>
                 <li>globalAlpha</li>
@@ -116,8 +116,9 @@
             </ul>
             <br>
             <div class="warn">
-                <p>Estas son algunas de las propiedades y metodos, hay muchas mas.
-                    A lo largo del curso las iremos usando
+                <p>
+                    These are some of the properties and methods, there are many more.
+                    Throughout the course we will use them
                 </p>
             </div>
         </article>
@@ -126,11 +127,11 @@
     <section>
         <h3>First shapes</h3>
         <article>
-            <h5>Usando el método fillRect:</h5>
-            <p>El método fillRect toma los siguientes parámetros (x, y, w, h)</p>
+            <h5>Using fillRect:</h5>
+            <p>The fillRect method takes the following parameters (x, y, w, h)</p>
             <div class="explain">
-                x & y son las coordenadas de nuestro canvas , w & h es el ancho
-                y largo de la figura que vamos acrear
+                x & y are the coordinates of our canvas, w & h is the width
+                and height of the shape that we are going to create
             </div>
             <br>
             <div class="code">
@@ -147,8 +148,8 @@
         <hr>
 
         <article>
-            <h5>Usando el método rect:</h5>
-            <p>Al igual que fillRect, rect toma los siguientes parámetros (x, y, w, h)</p>
+            <h5>Using rect:</h5>
+            <p>Like .fillRect(), rect takes the following parameters (x, y, w, h)</p>
             <br>
             <div class="code">
                 <iframe height="500" style="width: 100%;" scrolling="no" title="1x1-2"
@@ -159,8 +160,8 @@
                 </iframe>
             </div>
 
-            <p>A diferencia de .fillRect(), .rect() solo dibuja los bordes de la figura sin rellenarlo.
-                Nota tambien que he usado:
+            <p>Unlike .fillRect (), .rect() only draws the border of the shape without filling it.
+                Notice also that I have used:
                 <br>
                 <strong>
                     .beginPath()
@@ -172,22 +173,22 @@
             </p>
 
             <p>
-                1- El método beginPath()
-                comienza una nueva ruta vaciando la lista de subrutas.
-                Llame a este método cuando desee crear una nueva ruta.
+                1- The beginPath() method
+                starts a new route by emptying the subroutines list.
+                Call this method when you want to create a new route.
             </p>
             <p>
-                2- Usamos rect() para crear un camino (un cuadro en este caso)
+                2- We use rect() to create a path (a box in this case)
             </p>
             <p>
-                3- Usamos closePaht()<br>
-                Este método no dibuja nada directamente en el lienzo.
-                El método crea una ruta desde el punto actual hasta el punto de partida, es decir
-                .beginPath()
+                3- We use closePaht () <br>
+                This method does not draw anything directly on the canvas.
+                The method creates a route from the current point to the starting point,
+                that is to say .beginPath()
             </p>
 
             <p>
-                4- Finalmente usamos el método stroke() para dibujar realmente (renderizar) la figura en el lienzo.
+                4- Finally we use the stroke () method to actually draw (render) the figure on the canvas.
             </p>
 
         </article>
@@ -196,25 +197,25 @@
     <section>
 
         <article>
-            <h3>Cambiando los Colores</h3>
+            <h3>Changing Styles</h3>
 
-            <p>El objeto context también nos provee de propiedades
-                para manipular colores, fuentes, opacidad etc.
+            <p>The context object also provides us with properties
+                to manipulate colors, fonts, opacity etc.
             </p>
 
-            <div class="sub-title">Cambiendo el color del trazo con strokeStyle:</div>
+            <div class="sub-title">Changing the stroke color with strokeStyle:</div>
             <div class="code">
                 context.strokeStyle = "#000";
             </div>
 
-            <div class="sub-title">Cambiando el relleno con fillStyle:</div>
+            <div class="sub-title"> Changing the fill color with fillStyle:</div>
             <div class="code">
                 context.fillStyle = "red";
             </div>
 
             <br>
             <div class="warn">
-                <p>podemos asignar un color en exadecimal, rgb, rgba, nombre de color, etc.</p>
+                <p>we can assign a color in exadecimal, rgb, rgba, color name, etc.</p>
             </div>
             <br>
             <iframe height="565" style="width: 100%;" scrolling="no" title="gOPeQpE"
