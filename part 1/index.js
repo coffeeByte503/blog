@@ -2,17 +2,17 @@ const current = {
     LANGUAGE: Symbol("language"),
     TUTORIAL: Symbol("tutorial")
 }
-const TUTORIALS_SERVER = "https://luis72353.github.io/blog/part%201/";
+const TUTORIALS_SERVER = "./";
 
-let courseName = "tutorials";
+let courseName = "canvas course";
 
 let course = null;
 
-let defaultLanguage = navigator.language.split("-")[0].toLowerCase() || "en";
+let defaultLanguage = navigator.language.split("-")[0].toLowerCase() == "es" ? "es" : "en";
 
 async function main() {
 
-    course = new Course("tutorial-1x1", $("#tutorial"), defaultLanguage);
+    course = new Course("lesson-1x2", $("#tutorial"), defaultLanguage);
 
     //languages
     const languageSelector = createLanguageSelector(defaultLanguage);
@@ -31,50 +31,9 @@ async function main() {
         $("#sideMenu-overlay").classList.add("active");
     })
 
-    let lastX = 0;
-    let firstX = 0;
-    let width = 0;
-    window.ontouchstart = (e) => {
-        lastX = e.touches[0].clientX;
-        firstX = lastX;
-    }
-    window.ontouchmove = (e) => {
-        const currentX = e.touches[0].clientX;
-
-        const valueX = currentX - lastX;
-        width += valueX;
-        $("#sideMenu").style.left = width + "px";
-
-        let bgOpacity = 1 - ((100 / $("#sideMenu").offsetWidth) * Math.abs($("#sideMenu").offsetLeft) / 100);
-        if (bgOpacity > 0.5) bgOpacity = 0.5;
-        $("#sideMenu-overlay").style.background = `rgba(0,0,0,${bgOpacity})`;
-
-        if ($("#sideMenu").offsetLeft + $("#sideMenu").offsetWidth < 0) {
-            $("#sideMenu").style.left = -$("#sideMenu").offsetWidth + "px";
-            width = -$("#sideMenu").offsetWidth;
-
-        } else if ($("#sideMenu").offsetLeft > 0) {
-            $("#sideMenu").style.left = 0;
-            width = 0;
-        }
-
-        lastX = currentX
-    }
-    window.ontouchend = () => {
-        if (firstX > lastX + 50) {
-            $("#sideMenu").classList.remove("active")
-            $("#sideMenu-overlay").classList.remove("active")
-            width = 0;
-            $("#sideMenu").style.left = $("#sideMenu").offsetWidth + "px";
-            $("#sideMenu-overlay").style.background = `rgba(0,0,0,${0.7})`;
-        }
-    }
     $("#sideMenu-overlay").onclick = () => {
         $("#sideMenu").classList.remove("active")
         $("#sideMenu-overlay").classList.remove("active")
-        width = 0;
-        $("#sideMenu").style.left = $("#sideMenu").offsetWidth + "px";
-        $("#sideMenu-overlay").style.background = `rgba(0,0,0,${0.7})`;
     }
 
     const navs = [...document.querySelectorAll(".tutorial-list")];
@@ -109,9 +68,6 @@ function formatCode() {
         code = code.replace(/[;]/g, "<span class='white'>;</span>");
 
         code = code.replace(/(const | let|var|function)/gi, "<span class=\"word-reserved\">$1</span>")
-
-
-
 
 
         tag.innerHTML = code;
@@ -158,9 +114,18 @@ class Course {
 
     async render() {
         const url = courseName + "/" + this.lang + "/" + this.tutorialName + ".html";
-        //console.log(url)
+
+        $("#loader").style.display = "flex";
+        $("#loader").classList.add("active");
+
+
         this.parent.innerHTML = await getHTMLDocument(url, this._events);
         formatCode();
+
+        $("#loader").classList.remove("active");
+        setInterval(() => {
+            $("#loader").style.display = "none";
+        }, 500)
     }
 
     static load() {}
