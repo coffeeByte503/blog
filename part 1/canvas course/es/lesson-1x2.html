@@ -1,8 +1,9 @@
 <div>
     <section>
-        <h3>Basic path drawing commands: lines and curves (syntax only)</h3>
+        <h3>Comandos básicos de dibujos: líneas y curvas (solo sintaxis)</h3>
         <article>
-            <p>In this lesson you are going to learn</p>
+            <p>
+                En esta lección aprenderás los conceptos de</p>
             <ol class="blue-list">
                 <li>beginPath</li>
                 <hr />
@@ -24,18 +25,19 @@
         <article>
             <p>
                 <b>
-                    Begins assembling a new set of path commands and also discards any
-                    previously assembled path
+                    Comienza a ensamblar un nuevo conjunto de comandos de ruta y también descarta cualquier
+                    camino previamente ensamblado
                 </b>
             </p>
             <p>
-                The discarding is an important and often overlooked point. If you don't
-                begin a new path, any previously issued path commands will automatically
-                be redrawn.
+                El descarte es un punto importante y a menudo pasado por alto. Si no
+                comienzas una nueva ruta, cualquier comando de ruta emitido previamente
+                se ejecutará automáticamente y sera redibujado.
             </p>
             <p>
-                It also moves the drawing "pen" to the top-left origin of the canvas
-                coordinate[0, 0].
+
+                También mueve el "lapiz" del dibujo al origen superior izquierdo del lienzo.
+                coordenada [0, 0].
             </p>
         </article>
     </section>
@@ -45,19 +47,18 @@
         <article>
             <p>
                 <b>
-                    Moves the current pen location to the coordinate [startX, startY]
+                    Mueve la ubicación actual del lápiz a la coordenada [inicioX, inicioY]
                 </b>
             </p>
             <p>
-                By default all path drawings are connected together. So the ending point
-                of one line or curve is the starting point of the next line or curve.
-                This can cause an unexpected line to be drawn connecting two adjacent
-                drawings.
+                Por defecto, todos los dibujos de ruta están conectados entre sí. Entonces el punto final
+                de una línea o curva es el punto de partida de la siguiente línea o curva.
+                Esto puede hacer que se dibuje una línea inesperada conectando dos adyacentes
+                dibujos.
             </p>
             <p>
-                The <span class="code">context.moveTo()</span> command basically "picks
-                up the drawing pen" and places it at a new coordinate so the automatic
-                connecting line is not drawn
+                El comando <span class="code"> context.moveTo () </span> básicamente mueve
+                el lápiz del dibujo y lo coloca en una nueva coordenada.
             </p>
         </article>
     </section>
@@ -70,9 +71,9 @@
         <article>
             <p>
                 <b>
-                    Draws a circular arc given a centerpoint, radius and starting & ending
-                    angles. The angles are expressed as radians. To convert degrees to
-                    radians you can use this formula: <span class="code">radians = degrees * Math.PI / 180;</span>
+                    Dibuja un arco circular dado un punto central, radio, angulo de inicio y
+                    algulo final. Los ángulos se expresan en radianes puedes usar esta fórmula:
+                    <span class="code"> radianes = grados * Math.PI / 180;</span>
                 </b>
             </p>
             <div class="code">
@@ -81,17 +82,16 @@
                 }
             </div>
             <p>
-                Angle 0 faces directly rightward from the center of the arc. To draw a complete circle you can make
-                endingAngle =
-                startingAngle + 360 degrees (360 degrees == Math.PI * 2):
+                El ángulo 0 mira directamente hacia la derecha desde el centro del arco.
+                Para dibujar un círculo completo puedes hacer
+                anguloFinal = anguloInical + 360 grados; <i><b>(360 grados == Math.PI * 2)</b></i>
             </p>
             <div class="code">
                 context.arc(10, 10, 20, 0, Math.PI * 2);
             </div>
             <p>
-                By default, the arc is drawn clockwise, An optional [true | false]
-                parameter instructs the arc to be drawn
-                counterclockwise:
+                Por defecto, el arco se dibuja en el sentido de las agujas del reloj, un opcional [verdadero | falso]
+                indica al arco que se dibuje en sentido antihorario:
             </p>
             <div class="code">
                 context.arc(10, 10, 20, 0, Math.PI * 2, true);
@@ -106,9 +106,8 @@
             </div>
             <p>
                 <b>
-                    Draws a quadratic curve starting at the current pen location
-                    to a given ending coordinate. Another given control
-                    coordinate determines the shape (curviness) of the curve
+                    Dibuja una curva cuadrática que comienza en la ubicación actual del lápiz a una coordenada final
+                    dada. La otra coordenada de control determina la forma (curvatura) de la curva
                 </b>
             </p>
         </article>
@@ -121,9 +120,9 @@
             </div>
             <p>
                 <b>
-                    Draws a cubic Bezier curve starting at the current pen location
-                    to a given ending coordinate. Another 2 given
-                    control coordinates determine the shape (curviness) of the curve
+                    Dibuja una curva de Bezier cúbica que comienza en la ubicación actual del lápiz y
+                    finaliza en (endingX, endingY). control2X & control2Y
+                    determinan la forma (curvatura) de la curva.
                 </b>
             </p>
         </article>
@@ -136,14 +135,12 @@
             </div>
             <p>
                 <b>
-                    Draws a circular arc with a given radius. The arc is drawn
-                    clockwise inside the wedge formed by the current pen
-                    location and given two points: Point1 & Point2
+                    Dibuja un arco circular con un radio dado. Crea un arco entre dos tangentes
                 </b>
             </p>
             <p>
-                A line connecting the current pen location and the start
-                of the arc is automatically drawn preceding the arc.
+                Una línea que conecta la ubicación actual del lápiz y el inicio
+                del arco se dibuja automáticamente antes del arco.
             </p>
         </article>
     </section>
@@ -155,12 +152,13 @@
             </div>
             <p>
                 <b>
-                    Draws a rectangle given a top-left corner and a width & height
+                    Dibuja un rectángulo dado una esquina superior izquierda y un ancho y alto
                 </b>
             </p>
             <p>
-                The context.rect is a unique drawing command because it adds disconnected
-                rectangles. These disconnected rectangles are not automatically connected by lines.
+                context.rect es un comando de dibujo único porque agrega rectángulos
+                desconectados. Estos rectángulos desconectados no están conectados
+                automáticamente por líneas.
 
             </p>
         </article>
@@ -173,32 +171,30 @@
             </div>
             <p>
                 <b>
-                    Draws a line from the current pen location back to the beginning path coordinate
+                    Dibuja una línea desde la ubicación actual del lápiz hasta la coordenada de ruta inicial
                 </b>
             </p>
             <p>
-                For example, if you draw 2 lines forming 2 legs of a triangle, closePath
-                will "close" the triangle by drawing the third leg of the triangle from
-                the 2nd leg's endpoint back to the first leg's starting point
+                Por ejemplo, si dibuja 2 líneas que forman 2 patas de un triángulo, .closePath()
+                "cerrará" el triángulo dibujando la tercera pata del triángulo.
 
             </p>
             <p>
-                This command's name often causes it to be misunderstood.
-                <span clas="code">context.closePath</span> is NOT an ending delimiter to
-                context.beginPath. Again, the closePath command draws a line
-                it does not "close" a beginPath.
-
+                El nombre de este comando a menudo hace que se malinterprete.
+                <span class="code"> context.closePath </span> NO es un delimitador final para
+                context.beginPath. De nuevo, el comando closePath dibuja una línea
+                no "cierra" un <span class="code">beginPath()</span>.
             </p>
         </article>
     </section>
     <section>
         <article>
-            <p>It was all for this lesson.</p>
+            <p>Es todo en esta lección.</p>
             <div class="sub-title">
-                <p>See next lesson:</p>
+                <p>Ahora si a dibujar formas básicas y complejas:</p>
             </div>
             <div class="button">
-                <b>Drawing Path shapes</b>
+                <b>Dibujando Path shapes</b>
                 <br>
                 --will be aviable tomorrow--
             </div>
