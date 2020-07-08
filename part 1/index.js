@@ -8,7 +8,7 @@ let courseName = "canvas course";
 
 let course = null;
 
-let defaultLanguage = navigator.language.split("-")[0].toLowerCase() == "es" ? "es" : "en";
+let defaultLanguage = /* navigator.language.split("-")[0].toLowerCase() == "es" ? "es" :*/ "en";
 
 async function main() {
 
@@ -44,15 +44,25 @@ async function main() {
             tutorial.addEventListener("click", e => {
                 course.changeTutorial(tutorial.dataset.id);
                 course.render();
-                window.scroll(0, 0)
+                window.scroll(0, 0);
             })
         })
     })
 
 
+    window.addEventListener("scroll", calcLessonProgress)
+
+
 
 }
 window.addEventListener("load", main);
+
+let padding = 200;
+
+function calcLessonProgress() {
+    const percent = 100 / ($("main").scrollHeight - padding) * window.scrollY;
+    $("#lesson-progress").style.width = percent + "%";
+}
 
 function formatCode() {
     const codeTags = [...document.querySelectorAll(".code")]
@@ -66,6 +76,7 @@ function formatCode() {
         code = code.replace(/[.]/g, "<span class='white'>.</span>");
         code = code.replace(/[)]/g, "<span class='white'>)</span>");
         code = code.replace(/[;]/g, "<span class='white'>;</span>");
+        code = code.replace(/([*]|return)/g, "<span class='operator'>$1</span>");
 
         code = code.replace(/(const | let|var|function)/gi, "<span class=\"word-reserved\">$1</span>")
 

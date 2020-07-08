@@ -14,6 +14,7 @@
 
 <body>
     <header>
+        <div class="lesson-progress" id="lesson-progress"></div>
         <div class="inner_header">
             <div class="menu" id="open-sideMenu">
                 <img class="icon" src="img/menu.png" alt="menu">
@@ -39,9 +40,9 @@
                         <li data-id="lesson-1"> About course </li>
                         <li data-id="lesson-1x1"> Getting started with HTML5 Canvas </li>
 
-                        <!-- <li>Drawing Path Shapes </li>
+                        <li data-id="lesson-1x2">Basic Path Shapes </li>
 
-                        <li> Adding the Html5 Canvas Element from js</li>
+                        <!--  <li> Adding the Html5 Canvas Element from js</li>
 
                         <li> Canvas size and resolution </li>
 
@@ -81,84 +82,7 @@
             <div>Cargando</div>
         </div>
 
-        <style>
-            .loader {
-                position: fixed;
-                top: 50px;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: #ececec;
-                flex-direction: column;
-                transition: 0.5s;
-                opacity: 0;
 
-            }
-
-            .loader.active {
-                opacity: 1;
-            }
-
-            .bars,
-            .loader {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .bars>span {
-                display: inline-block;
-                background-color: #2980b9;
-                width: 5px;
-                height: 0;
-                margin: 0 2px;
-                border-radius: 10px;
-                animation: bounce 0.5s infinite alternate;
-
-            }
-
-            .bars>span:first-child {
-                animation-delay: 0.4s;
-            }
-
-            .bars>span:nth-child(2) {
-                animation-delay: 0.4s;
-            }
-
-            .bars>span:nth-child(3) {
-                animation-delay: 0.6s;
-            }
-
-            .bars>span:nth-child(4) {
-                animation-delay: 0.8s;
-            }
-
-            .bars>span:nth-child(5) {
-                animation-delay: 1s;
-            }
-
-            .bars>span:nth-child(2) {
-                animation-delay: 1.2s;
-            }
-
-            .bars>span:nth-child(6) {
-                animation-delay: 1.4s;
-            }
-
-            .bars>span:nth-child(7) {
-                animation-delay: 1.6s;
-            }
-
-            .bars>span:nth-child(8) {
-                animation-delay: 1.8s;
-            }
-
-            @keyframes bounce {
-                to {
-                    height: 40px;
-                }
-            }
-        </style>
         <div id="tutorial"></div>
     </main>
 
